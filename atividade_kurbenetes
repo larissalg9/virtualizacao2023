@@ -1,1 +1,15 @@
+## Inicie o Minikube ##
+minikube start
 
+##Configurar o ambiente do Docker##
+eval $(minikube docker-env)
+
+##dockerfile##
+
+FROM python:3
+WORKDIR /Documents/Larissa/Download
+RUN pip install django==3.2
+COPY . .
+RUN python manage.py migrate
+EXPOSE 8000
+CMD ["python","manage.py","runserver","0.0.0.0:8000"]
